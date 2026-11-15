@@ -1,0 +1,107 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /home/claude/docintel/backend
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 98 items
+
+tests/test_api.py::test_health PASSED
+tests/test_api.py::test_upload_multiple_and_results PASSED
+tests/test_api.py::test_list_and_page_endpoints PASSED
+tests/test_api.py::test_invalid_files_fail_with_codes PASSED
+tests/test_api.py::test_spreadsheet_upload_creates_many_invoices PASSED
+tests/test_api.py::test_validation_flags_and_review_queue PASSED
+tests/test_api.py::test_duplicate_upload_detected PASSED
+tests/test_api.py::test_manual_correction_is_audited_and_revalidated PASSED
+tests/test_api.py::test_approve_and_line_item_edit PASSED
+tests/test_api.py::test_search_modes_and_filters PASSED
+tests/test_api.py::test_reprocess_and_reprocess_failed PASSED
+tests/test_api.py::test_llm_outage_falls_back PASSED
+tests/test_api.py::test_reconcile_pdf_vs_excel PASSED
+tests/test_api.py::test_stats_export_delete PASSED
+tests/test_api.py::test_api_key_and_limits PASSED
+tests/test_api.py::test_security_headers_and_filename_sanitising PASSED
+tests/test_extraction.py::test_parse_amount[\xa31,234.50-1234.50] PASSED
+tests/test_extraction.py::test_parse_amount[1.234,50-1234.50] PASSED
+tests/test_extraction.py::test_parse_amount[(12.00)--12.00] PASSED
+tests/test_extraction.py::test_parse_amount[EUR 3 400,10-3400.10] PASSED
+tests/test_extraction.py::test_parse_amount[1,234-1234] PASSED
+tests/test_extraction.py::test_parse_amount[12,5-12.5] PASSED
+tests/test_extraction.py::test_parse_amount[99-99] PASSED
+tests/test_extraction.py::test_parse_amount[abc-None] PASSED
+tests/test_extraction.py::test_parse_amount[-None] PASSED
+tests/test_extraction.py::test_parse_date[2026-03-14-d0-False] PASSED
+tests/test_extraction.py::test_parse_date[14/03/2026-d1-False] PASSED
+tests/test_extraction.py::test_parse_date[03/14/2026-d2-False] PASSED
+tests/test_extraction.py::test_parse_date[March 14, 2026-d3-False] PASSED
+tests/test_extraction.py::test_parse_date[14 Mar 2026-d4-False] PASSED
+tests/test_extraction.py::test_parse_date[03/04/2026-d5-True] PASSED
+tests/test_extraction.py::test_parse_date[not a date-None-False] PASSED
+tests/test_extraction.py::test_currency[Total \xa310-GBP] PASSED
+tests/test_extraction.py::test_currency[Amount due USD 5-USD] PASSED
+tests/test_extraction.py::test_currency[\u20ac 4,00-EUR] PASSED
+tests/test_extraction.py::test_currency[Total 10-None] PASSED
+tests/test_extraction.py::test_rules_extract_all_fields PASSED
+tests/test_extraction.py::test_rules_never_invent_missing_values PASSED
+tests/test_extraction.py::test_rules_ocr_merged_columns PASSED
+tests/test_extraction.py::test_table_one_row_per_line_item PASSED
+tests/test_extraction.py::test_not_an_invoice_table PASSED
+tests/test_extraction.py::test_llm_request_and_parse PASSED
+tests/test_extraction.py::test_llm_markdown_fenced_json PASSED
+tests/test_extraction.py::test_llm_retries_rate_limit PASSED
+tests/test_extraction.py::test_llm_gives_up PASSED
+tests/test_extraction.py::test_grounding_removes_hallucinated_values PASSED
+tests/test_extraction.py::test_service_falls_back_to_rules_when_llm_down PASSED
+tests/test_extraction.py::test_service_fills_llm_gaps_from_rules PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[$1-78077-SI-78077] PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[S!-5291-SI-5291] PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[S1-39195-SI-39195] PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[INV-12345-INV-12345] PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[A12345-A12345] PASSED
+tests/test_extraction.py::test_fix_ocr_invoice_ids[2026/111-2026/111] PASSED
+tests/test_extraction.py::test_company_suffix_and_grounding_tolerate_ocr PASSED
+tests/test_processing.py::test_detect_valid[a.pdf-%PDF-1.7\n...-pdf] PASSED
+tests/test_processing.py::test_detect_valid[a.PNG-\x89PNG\r\n\x1a\n....-image] PASSED
+tests/test_processing.py::test_detect_valid[a.jpeg-\xff\xd8\xff\xe0....-image] PASSED
+tests/test_processing.py::test_detect_valid[a.tif-II*\x00....-image] PASSED
+tests/test_processing.py::test_detect_valid[a.xlsx-PK\x03\x04....-xlsx] PASSED
+tests/test_processing.py::test_detect_valid[a.xls-\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1-xls] PASSED
+tests/test_processing.py::test_detect_valid[a.csv-a,b,c\n1,2,3-csv] PASSED
+tests/test_processing.py::test_detect_rejects[a.exe-MZ....-unsupported_type] PASSED
+tests/test_processing.py::test_detect_rejects[a.pdf--empty_file] PASSED
+tests/test_processing.py::test_detect_rejects[a.png-%PDF-1.4 ...-type_mismatch] PASSED
+tests/test_processing.py::test_detect_rejects[a.pdf-hello world-corrupted_file] PASSED
+tests/test_processing.py::test_detect_rejects[a.csv-\x00\x01\x02binary-type_mismatch] PASSED
+tests/test_processing.py::test_digital_pdf_text PASSED
+tests/test_processing.py::test_multipage_pdf_and_progress PASSED
+tests/test_processing.py::test_scanned_pdf_uses_ocr PASSED
+tests/test_processing.py::test_corrupted_pdf PASSED
+tests/test_processing.py::test_encrypted_pdf PASSED
+tests/test_processing.py::test_image_ocr[PNG-clean] PASSED
+tests/test_processing.py::test_image_ocr[JPEG-photo] PASSED
+tests/test_processing.py::test_low_resolution_image_still_reads_total PASSED
+tests/test_processing.py::test_multipage_tiff PASSED
+tests/test_processing.py::test_truncated_image PASSED
+tests/test_processing.py::test_blank_image_returns_little_text PASSED
+tests/test_processing.py::test_xlsx_multiple_sheets_and_header PASSED
+tests/test_processing.py::test_xls_legacy PASSED
+tests/test_processing.py::test_csv_semicolon_decimal_comma PASSED
+tests/test_processing.py::test_csv_cp1252_encoding PASSED
+tests/test_processing.py::test_corrupted_xlsx PASSED
+tests/test_processing.py::test_page_invoice_number_ignores_inv_prefix_inside_value PASSED
+tests/test_processing.py::test_segmentation_keeps_continuation_pages PASSED
+tests/test_processing.py::test_segmentation_without_readable_numbers PASSED
+tests/test_validation.py::test_clean_invoice_passes PASSED
+tests/test_validation.py::test_missing_required_fields_are_errors PASSED
+tests/test_validation.py::test_total_mismatch PASSED
+tests/test_validation.py::test_rounding_tolerance_not_flagged PASSED
+tests/test_validation.py::test_line_item_math PASSED
+tests/test_validation.py::test_line_items_sum_vs_subtotal PASSED
+tests/test_validation.py::test_tax_inclusive_line_items_accepted PASSED
+tests/test_validation.py::test_negative_and_subtotal_exceeds_total PASSED
+tests/test_validation.py::test_dates PASSED
+tests/test_validation.py::test_unusual_tax_and_currency PASSED
+tests/test_validation.py::test_low_confidence_flags_review PASSED
+tests/test_validation.py::test_duplicate_invoice_detection PASSED
+
+------- generated xml file: /home/claude/docintel/docs/test-results.xml --------
+============================= 98 passed in 25.53s ==============================
