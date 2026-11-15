@@ -1,0 +1,6 @@
+# The Next.js web app lives in /frontend, so build from there.
+# Dependencies are installed explicitly so the `next` binary is available.
+[build]
+  base = "frontend"
+  command = "npm install --no-audit --no-fund && npm run build"
+  publish = ".next"
